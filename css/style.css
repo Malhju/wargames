@@ -4,13 +4,13 @@ html, body{
 
 /****************** HOMEPAGE ******************/
 
-/* #homepage{
+#homepage{
     display: none; 
-}   */
+}  
 
-#game{
+/* #game{
     display:none; 
-} 
+}  */
 
 #first{
     position: relative;
@@ -23,7 +23,7 @@ html, body{
     padding-top: 7.5rem; 
 }
 
-#players{
+#character-selector{
     display: flex; 
 }
 
@@ -32,29 +32,29 @@ h1{
     font-size: 5rem; 
 }
 
-#perso_homepage_01{
+#character_homepage_01{
     background-color: thistle; 
 }
 
-#perso_homepage_02{
+#character_homepage_02{
     background-color: blue; 
 }
 
-#perso_homepage_03{
+#character_homepage_03{
     background-color:pink; 
 }
 
-#perso_homepage_04{
+#character_homepage_04{
     background-color: yellow; 
 }
 
-.perso{
+.character{
     width: 12rem; 
     height: 12rem; 
     margin: 2rem; 
 }
 
-.start{
+#btn-start-game{
     width: 100%;
     text-align: center;
 }

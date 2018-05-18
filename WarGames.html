@@ -5,44 +5,57 @@
         <title>War Games_Play</title>
         <link type="text/css" rel="stylesheet" href="css/style.css" />
     </head>
-    <body>
-
-        <header>
-            <h1>War Games</h1>
-        </header>
-
-        <section id="homepage">
-            <main id="first"> 
-                <div id="players">
-                    <div id="perso_homepage_01" class="perso"></div>
-                    <div id="perso_homepage_02" class="perso"></div>
-                    <div id="perso_homepage_03" class="perso"></div>
-                    <div id="perso_homepage_04" class="perso"></div>
+    
+    <body onload="init()">
+        <main id="app">
+            <header>
+                <h1>War Games</h1>
+            </header>
+            <section id="homepage">
+                <main id="first"> 
+                    <div id="character-selector">
+                        <div id="character_homepage_01" class="character" data-character="P1"></div>
+                        <div id="character_homepage_02" class="character" data-character="P2"></div>
+                        <div id="character_homepage_03" class="character" data-character="P3"></div>
+                        <div id="character_homepage_04" class="character" data-character="P4"></div>
+                    </div>
+                </main>
+                <div id="btn-start-game">
+                    <a href="#" class="button">Start game !</a>
                 </div>
-            </main>
-            <div class="start">
-                <a href="#" class="button">Start game !</a>
-            </div>
-        </section>
+            </section>
 
-        <section id="game">
-            <main id="second"> 
-                <div id="score">
-                    <div class="score_01">Score Player 1 : </div>
-                    <div class="score_middle"></div>
-                    <div class="score_02">Score Player 2 : </div>
+            <section id="game">
+                <main id="second"> 
+                    <div id="score">
+                        <div class="score_01">Score Player 1 : </div>
+                        <div class="score_middle"></div>
+                        <div class="score_02">Score Player 2 : </div>
+                    </div>
+                    <div id="battle">
+                        <div id="perso_01"></div>
+                        <div id="perso_02"></div>
+                    </div>
+                </main>
+                <div class="back">
+                    <a href="#" class="button">Try again!</a>
                 </div>
-                <div id="battle">
-                    <div id="perso_01"></div>
-                    <div id="perso_02"></div>
-                </div>
-            </main>
-            <div class="back">
-                <a href="#" class="button">Try again!</a>
-            </div>
-        </section>
+            </section>
 
+            <section id="game-over">
+
+            </section>
+        </main>
     </body>
-    <script src="js/script.js"></script>
+    <!-- <script src="js/script.js"></script> -->
+    <script type="text/javascript" src="js/Player.js"></script>
+    <script type="text/javascript" src="js/homepage.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript">
+        function init(){
+            const app = new App();
+            app.start();
+        }
+    </script>
 </body>
 </html>
