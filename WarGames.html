@@ -9,19 +9,39 @@
     <body onload="init()">
         <main id="app">
             <header>
-                <h1>War Games</h1>
+                <h1>South Park Destroyer</h1>
             </header>
+
             <section id="homepage">
                 <main id="first"> 
                     <div id="character-selector">
-                        <div id="character_homepage_01" class="character" data-character="P1"></div>
-                        <div id="character_homepage_02" class="character" data-character="P2"></div>
-                        <div id="character_homepage_03" class="character" data-character="P3"></div>
-                        <div id="character_homepage_04" class="character" data-character="P4"></div>
+                        <div id="character_homepage_01" class="character_01 character" data-character="character_01">
+                            <p class="name">Super Dick</p>
+                        </div>
+                        <div id="character_homepage_02" class="character_02 character" data-character="character_02">
+                            <p class="name">Super Bitch</p>
+                        </div>
+                        <div id="character_homepage_03" class="character_03 character" data-character="character_03">
+                            <p class="name">Super Black</p>
+                        </div>
+                        <div id="character_homepage_04" class="character_04 character" data-character="character_04">
+                            <p class="name">Super Woman</p>
+                        </div>
+                    </div>
+                    <div id="fight">
+                        <div id="character_vs_01" class="character_01_VS characterVS" data-character="P1">
+                            <p class="name"></p>
+                        </div>
+                        <div id="character_vs" class="characterVS" data-character="P3">
+                            <p class="name"></p>
+                        </div>
+                        <div id="character_vs_02" class="character_02_VS characterVS" data-character="P3">
+                            <p class="name"></p>
+                        </div>
                     </div>
                 </main>
                 <div id="btn-start-game">
-                    <a href="#" class="button">Start game !</a>
+                    <a href="#" class="button">Start !</a>
                 </div>
             </section>
 
@@ -50,6 +70,7 @@
     <!-- <script src="js/script.js"></script> -->
     <script type="text/javascript" src="js/Player.js"></script>
     <script type="text/javascript" src="js/homepage.js"></script>
+    <script type="text/javascript" src="js/gamepage.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript">
         function init(){
