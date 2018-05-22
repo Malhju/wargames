@@ -14,7 +14,7 @@ class App {
 
 
         this.playerOne = new Player('#perso_01', 81, 68, 90, 83, 65, 69, 5);
-        this.playerTwo = new Player('#perso_02', 102, 100, 101, 104, 103, 105, 5);
+        this.playerTwo = new Player('#perso_02', 100, 102, 101, 104, 103, 105, 5);
         this.players.push(this.playerOne);
         this.players.push(this.playerTwo);
 
