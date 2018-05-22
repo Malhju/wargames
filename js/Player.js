@@ -1,29 +1,30 @@
 class Player {
-    constructor (name, codeArrowLeft, codeArrowRight, codeArrowUp, codeArrowDown){
-        this.name = name;
-    //constructor (char_name, char_size, char_orientation, char_speed){
-        // this.char_name = char_name;
-        // this.char_size = char_size;
-        // this.char_orientation = char_orientation;
-        // this.char_speed = char_speed;
-        // this.char_health = char_health;
+    constructor (id, codeArrowLeft, codeArrowRight, codeArrowUp, codeArrowDown, step, positionLeft){
+        this.id = id;
+
         this.codeArrowLeft = codeArrowLeft;
         this.codeArrowRight = codeArrowRight;
         this.codeArrowUp = codeArrowUp;
         this.codeArrowDown = codeArrowDown;
+
+        this.step = step; 
+        this.positionLeft = positionLeft; 
 
         this.moveLeft = false;
         this.moveRight = false;
         this.moveUp = false;
         this.moveDown = false;
 
+        this.initDomElement();
+
+    }
+
+    initDomElement(){
+        this.DomElement = document.querySelector(this.id); 
     }
 
     onKeyDown(event){
-        if (event.keyCode == this.codeArrowUp) {
-            this.moveUp = true;
-            console.log(this.name,'movetop')
-        }
+        if (event.keyCode == this.codeArrowUp) {this.moveUp = true;}
         if (event.keyCode == this.codeArrowDown) this.moveDown = true;
         if (event.keyCode == this.codeArrowLeft) this.moveLeft = true;
         if (event.keyCode == this.codeArrowRight) this.moveRight = true;
@@ -36,7 +37,17 @@ class Player {
         if (event.keyCode == this.codeArrowRight) this.moveRight = false;
     }
 
-    // char_choice(){
+    moveCharacter(event){
+        let positionLeft = this.DomElement.offsetLeft; 
 
-    // }
+        if(this.moveLeft){
+            this.positionLeft -= this.step; 
+        }
+
+        if(this.moveRight){
+            this.positionLeft += this.step; 
+        }
+
+        this.DomElement.style.left = this.positionLeft + "px"; 
+    }
 }

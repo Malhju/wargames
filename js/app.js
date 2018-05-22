@@ -10,8 +10,8 @@ class App {
         this.characterGamer2 = null; // character chosen by player 2
 
 
-        this.playerOne = new Player('PlayerOne', 81,68, 90, 83);
-        this.playerTwo = new Player('PlayerTwo',100,102,104,101);
+        this.playerOne = new Player('#perso_01', 81, 68, 90, 83, 1, document.querySelector("#perso_01").offsetLeft);
+        this.playerTwo = new Player('#perso_02', 100, 102, 104, 101, 1, document.querySelector("#perso_02").offsetLeft);
 
         this.initKeyboardListener();
     }
@@ -33,18 +33,11 @@ class App {
         this.playerTwo.onKeyUp(event);
     }
 
-    movePlayer(){
-        let step = 1;
-
-        let player1_positionX = player1.offsetLeft;
-        let player1_positionY = player1.offsetTop;
-    
-        if (moveUp) player1_positionX -= step;
-        if (moveDown) player1_positionX += step;
-        if (moveLeft) player1_positionY -= step;
-        if (moveRight) player1_positionY += step; 
+    moveCharacter(){
+        this.playerOne.moveCharacter(); 
+        this.playerTwo.moveCharacter(); 
     }
-    
+
     /**
      * Init Application
      */
@@ -86,7 +79,10 @@ class App {
 
         requestAnimationFrame(function () {
             self.render();
+            self.moveCharacter();
+            
             self.loop();
+            
         })
     }
 
