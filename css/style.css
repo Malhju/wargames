@@ -1,26 +1,34 @@
-html, body{
-    background-color: whitesmoke;
+@font-face {
+    font-family: SouthPark;
+    src: url(../assets/font/southpark.ttf);
+}
+
+body{
+    background-image : url(../assets/img/southPark.jpg); 
+    background-repeat: no-repeat;
+    background-size: cover; 
+
 }
 
 /****************** HOMEPAGE ******************/
 
+/*
 #homepage{
     display: none; 
-}  
+}   
+*/
 
-/* #game{
+#game{
     display:none; 
-}  */
+} 
 
 #first{
     position: relative;
     width: 60rem;
     height: 35rem;
     margin: auto; 
-    margin-top: 5rem; 
-    background-color: violet;
+    background-color: rgba(204, 102, 255, 0.7);
     box-sizing: border-box;
-    padding-top: 7.5rem; 
 }
 
 #character-selector{
@@ -30,48 +38,85 @@ html, body{
 h1{
     text-align: center; 
     font-size: 5rem; 
+    font-family: 'southpark'; 
 }
 
-#character_homepage_01{
-    background-color: thistle; 
+/****************** SELECT YOUR PLAYER ******************/
+
+.character_01{
+    background-image : url(../assets/img/craig.png); 
+    background-size: cover; 
 }
 
-#character_homepage_02{
-    background-color: blue; 
+.character_02{
+    background-image : url(../assets/img/wendy.png); 
+    background-size: cover; 
 }
 
-#character_homepage_03{
-    background-color:pink; 
+.character_03{
+    background-image : url(../assets/img/token.png); 
+    background-size: cover; 
 }
 
-#character_homepage_04{
-    background-color: yellow; 
+.character_04{
+    background-image : url(../assets/img/girl.png); 
+    background-size: cover;     
+}
+
+.name{
+    margin-top:185px; 
+    text-align: center; 
+    font-family: 'southpark'; 
+    font-size: 25px; 
 }
 
 .character{
-    width: 12rem; 
-    height: 12rem; 
-    margin: 2rem; 
+    width: 200px; 
+    height: 200px; 
+    margin: 20px; 
 }
 
-#btn-start-game{
-    width: 100%;
-    text-align: center;
+/****************** PLAYER SELECTED ******************/
+
+#fight{
+    position: relative;
+    display: flex; 
+    margin-top: 40px;
+    margin-left: 120px;
+    margin-right: 120px;
 }
 
-.button{
-    text-align: center;
-    display:inline-block;
-    text-decoration: none !important;
-    margin:0 auto;
-    padding-top: 1rem; 
-    width: 25rem; 
-    height: 5rem;
-    background-color: lightgreen; 
-    border-radius: 2rem; 
-    font-size: 2.5rem; 
-    text-shadow: -9px -2px 5px rgba(152, 150, 150, 1);
-    text-decoration: none; 
+#character_vs_01{
+    background-color: rgba(255, 204, 255, 0.7);
+    width: 250px; 
+    height: 250px; 
+}
+
+#character_vs{
+    background-image : url(../assets/img/vs.png); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: auto; 
+    width: 200px; 
+    height: 200px; 
+}
+
+#character_vs_02{
+    background-color: rgba(255, 204, 255, 0.7);
+    width: 250px; 
+    height: 250px; 
+}
+
+/* .characterVS{
+    width: 200px; 
+    height: 200px; 
+} */
+
+.namevs{
+    margin-top:225px; 
+    text-align: center; 
+    font-family: 'southpark'; 
+    font-size: 25px; 
 }
 
 /****************** PLAY ******************/
@@ -81,7 +126,6 @@ h1{
     width: 960px;
     height: 560px;
     margin: auto; 
-    margin-top: 80px; 
     background-color: blue;
     box-sizing: border-box;
 } 
@@ -141,19 +185,24 @@ h1{
     text-align: center;
 }
 
-.button{
+/****************** BUTTON ******************/
+
+#btn-start-game{
+    width: 100%;
     text-align: center;
-    display:inline-block;
-    text-decoration: none !important;
-    margin:0 auto;
-    margin-top: 1rem; 
-    padding-top: 1rem; 
-    width: 25rem; 
-    height: 5rem;
-    background-color: lightgreen; 
-    border-radius: 2rem; 
-    font-size: 2.5rem; 
-    text-shadow: -9px -2px 5px rgba(152, 150, 150, 1);
-    text-decoration: none; 
 }
 
+.button{
+    text-align: center;
+    display: inline-block;
+    text-decoration: none !important;
+    margin-top: 1rem; 
+    padding: 1rem; 
+    width: 25rem; 
+    border-radius: 2rem; 
+    font-size: 2.5rem; 
+    background-color: rgb(51, 204, 51);
+    text-shadow: -9px -2px 5px rgba(152, 150, 150, 1);
+    text-decoration: none; 
+    font-family: 'southpark'; 
+}
