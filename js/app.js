@@ -38,6 +38,8 @@ class App {
         this.playerTwo.moveCharacter(); 
     }
 
+    /* COLLISIONS */
+
     /**
      * Init Application
      */

@@ -26,16 +26,6 @@ class UIHomePage {
 
         this.character_vs_01 = this.DOMElement.querySelector('#character_vs_01');
         this.character_vs_02 = this.DOMElement.querySelector('#character_vs_02');
-
-        //this.player01Selector = this.DOMElement.querySelector("#character_homepage_01");
-        // this.player02Selector = this.DOMElement.querySelector("#character_homepage_02");
-        // this.player03Selector = this.DOMElement.querySelector("#character_homepage_03");
-        // this.player04Selector = this.DOMElement.querySelector("#character_homepage_04");
-
-        //this.player01List = this.player01Selector.querySelectorAll(".character_01");
-        // this.player01List = this.player01Selector.querySelectorAll(".character_01");
-        // this.player01List = this.player01Selector.querySelectorAll(".character_01");
-        // this.player01List = this.player01Selector.querySelectorAll(".character_01");
     }
 
     /**
@@ -50,21 +40,8 @@ class UIHomePage {
 
         // Event on button start
         this.buttonStartGame.addEventListener('click', this.onStartGame.bind(this));
-
-        // Select your player
-        //this.player01List.addEventListener('click', this.vsBattle.bind(this));
-        // this.player02.addEventListener('click', this.vsBattle.bind(this));
-        // this.player03.addEventListener('click', this.vsBattle.bind(this));
-        // this.player04.addEventListener('click', this.vsBattle.bind(this));
-
     }
-/*
-    vsBattle(event){
-        let selectPlayer = event.target.dataset.character;
-
-        this.app.onChooseCharacter(characterChosen);
-    }
-*/
+    
     /**
      * On choose character in list
      *

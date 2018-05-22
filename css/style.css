@@ -64,7 +64,7 @@ h1{
 }
 
 .name{
-    margin-top:200px; 
+    margin-top:185px; 
     text-align: center; 
     font-family: 'southpark'; 
     font-size: 25px; 
@@ -81,13 +81,15 @@ h1{
 #fight{
     position: relative;
     display: flex; 
-    margin-top: 60px;
-    margin-left: 150px;
-    margin-right: 150px;
+    margin-top: 40px;
+    margin-left: 120px;
+    margin-right: 120px;
 }
 
 #character_vs_01{
     background-color: rgba(255, 204, 255, 0.7);
+    width: 250px; 
+    height: 250px; 
 }
 
 #character_vs{
@@ -95,20 +97,23 @@ h1{
     background-repeat: no-repeat;
     background-size: cover;
     margin: auto; 
-}
-
-#character_vs_02{
-    background-color: rgba(255, 204, 255, 0.7);
-}
-
-.characterVS{
     width: 200px; 
     height: 200px; 
 }
 
-.namevs{
+#character_vs_02{
     background-color: rgba(255, 204, 255, 0.7);
-    margin-top:200px; 
+    width: 250px; 
+    height: 250px; 
+}
+
+/* .characterVS{
+    width: 200px; 
+    height: 200px; 
+} */
+
+.namevs{
+    margin-top:225px; 
     text-align: center; 
     font-family: 'southpark'; 
     font-size: 25px; 
