@@ -10,8 +10,8 @@ class App {
         this.characterGamer2 = null; // character chosen by player 2
 
 
-        this.playerOne = new Player('#perso_01', 81, 68, 90, 83, 1, document.querySelector("#perso_01").offsetLeft);
-        this.playerTwo = new Player('#perso_02', 100, 102, 104, 101, 1, document.querySelector("#perso_02").offsetLeft);
+        this.playerOne = new Player('#perso_01', 81, 68, 90, 83, 5, document.querySelector("#perso_01").offsetLeft, document.querySelector("#perso_01").offsetTop);
+        this.playerTwo = new Player('#perso_02', 100, 102, 104, 101, 5, document.querySelector("#perso_02").offsetLeft, document.querySelector("#perso_02").offsetTop);
 
         this.initKeyboardListener();
     }
@@ -37,6 +37,8 @@ class App {
         this.playerOne.moveCharacter(); 
         this.playerTwo.moveCharacter(); 
     }
+
+    /* COLLISIONS */
 
     /**
      * Init Application
