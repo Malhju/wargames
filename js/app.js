@@ -9,9 +9,17 @@ class App {
         this.characterGamer1 = null; // character chosen by player 1
         this.characterGamer2 = null; // character chosen by player 2
 
+        this.players = [];
+        this.allElements = [];
 
-        this.playerOne = new Player('#perso_01', 81, 68, 90, 83, 5, document.querySelector("#perso_01").offsetLeft, document.querySelector("#perso_01").offsetTop);
-        this.playerTwo = new Player('#perso_02', 100, 102, 104, 101, 5, document.querySelector("#perso_02").offsetLeft, document.querySelector("#perso_02").offsetTop);
+        this.playerOne = new Player('#perso_01', 81, 68, 90, 83, 65, 69, 5);
+        this.playerTwo = new Player('#perso_02', 102, 100, 101, 104, 103, 105, 5);
+        this.players.push(this.playerOne);
+        this.players.push(this.playerTwo);
+
+        // ON met tous les éléments dans le tableau, y compris les joueurs
+        this.allElements.push(this.playerOne);
+        this.allElements.push(this.playerTwo);
 
         this.initKeyboardListener();
     }
@@ -33,12 +41,23 @@ class App {
         this.playerTwo.onKeyUp(event);
     }
 
+    onKeyPress(event){
+        this.playerOne.onKeyPress(event);
+        this.playerTwo.onKeyPress(event);
+    }
+
     moveCharacter(){
         this.playerOne.moveCharacter(); 
-        this.playerTwo.moveCharacter(); 
+        this.playerTwo.moveCharacter();
     }
 
     /* COLLISIONS */
+    checkAllCollision(){
+        for(let i = 0; i< this.players; i++) {
+            let player = this.players[i];
+            player.checkCollision(this.allElements);
+        }
+    }
 
     /**
      * Init Application
@@ -82,9 +101,8 @@ class App {
         requestAnimationFrame(function () {
             self.render();
             self.moveCharacter();
-            
+            self.checkAllCollision();
             self.loop();
-            
         })
     }
 
