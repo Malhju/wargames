@@ -125,7 +125,7 @@ h1{
     position: relative;
     width: 960px;
     height: 560px;
-    margin: auto; 
+    margin: auto;
     background-color: blue;
     box-sizing: border-box;
 } 
@@ -156,6 +156,7 @@ h1{
 #battle{
     position: relative;
     height: 510px;
+    background-image : url(../assets/img/battleground.png); 
     margin: auto; 
 } 
 
@@ -168,16 +169,18 @@ h1{
     position: absolute; 
     width: 50px; 
     height: 50px; 
-    background-color: black; 
+    background-image : url(../assets/img/SuperDick1.png);
+    /* transform: none; */
 }
 
 #perso_02{
     position: absolute; 
     width: 50px; 
     height: 50px; 
-    left: 910px; 
+    left: 910px;
     top: 460px;
-    background-color: grey; 
+    background-image : url(../assets/img/SuperBitch2.png);
+    /* transform: none; */
 }
 
 .back{

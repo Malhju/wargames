@@ -9,12 +9,14 @@ class App {
         this.characterGamer1 = null; // character chosen by player 1
         this.characterGamer2 = null; // character chosen by player 2
 
+        this.gameIsStarted = false;
+
         this.players = [];
         this.allElements = [];
 
 
-        this.playerOne = new Player('#perso_01', 81, 68, 90, 83, 65, 69, 5);
-        this.playerTwo = new Player('#perso_02', 100, 102, 101, 104, 103, 105, 5);
+        this.playerOne = new Player('#perso_01', 81, 68, 90, 83, 65, 69, 4, -90);
+        this.playerTwo = new Player('#perso_02', 102, 100, 101, 104, 103, 105, 4, -90);
         this.players.push(this.playerOne);
         this.players.push(this.playerTwo);
 
@@ -102,8 +104,11 @@ class App {
 
         requestAnimationFrame(function () {
             self.render();
-            self.moveCharacter();
-            self.checkAllCollision();
+
+            if(self.gameIsStarted){
+                self.moveCharacter();
+                self.checkAllCollision();    
+            }
             self.loop();
         })
     }
@@ -154,6 +159,8 @@ class App {
         console.log('Gotogame');
         console.log('this.UIhomePage.DOMElement.style.display', this.UIhomePage.DOMElement.style.display)
         
+        this.gameIsStarted = true;
+
         let uiHomePageCurrentDisplay = this.UIhomePage.DOMElement.currentStyle ? 
             this.UIhomePage.DOMElement.currentStyle.display :
             getComputedStyle(this.UIhomePage.DOMElement, null).display;

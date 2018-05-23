@@ -1,5 +1,5 @@
 class Player {
-    constructor (id, codeArrowLeft, codeArrowRight, codeArrowUp, codeArrowDown, codeOrientLeft, codeOrientRight, step){
+    constructor (id, codeArrowLeft, codeArrowRight, codeArrowUp, codeArrowDown, codeOrientLeft, codeOrientRight, step, angle){
         this.id = id;
 
         this.codeArrowLeft = codeArrowLeft;
@@ -8,6 +8,7 @@ class Player {
         this.codeArrowDown = codeArrowDown;
         this.codeOrientLeft = codeOrientLeft;
         this.codeOrientRight = codeOrientRight;
+        this. angle = angle;
 
         this.step = step; 
         
@@ -26,6 +27,7 @@ class Player {
         this.DomElBattlefield = document.querySelector('#battle');
     }
 
+    //ECOUTES CLAVIERS
     onKeyDown(event){
         if (event.keyCode == this.codeArrowUp) this.moveUp = true;
         if (event.keyCode == this.codeArrowDown) this.moveDown = true;
@@ -43,6 +45,7 @@ class Player {
 
     }
 
+    //GESTION DES COLLISIONS ENTRE LES ELEMENTS
     checkCollision(elements){
         // for sur tous les éléments
         for(let i=0; i<this.players; i++){
@@ -64,32 +67,48 @@ class Player {
         let tempOrientLeft = 0;
         let tempOrientRight = 0;
 
+        //DEPLACEMENT DU PERSONNAGE SUR LES AXES DES ABSCISSES ET DES ORDONNEES
         if(this.moveLeft) positionLeft -= this.step;
         if(this.moveRight) positionLeft += this.step; 
         if(this.moveUp) positionTop -= this.step;
         if(this.moveDown) positionTop += this.step;
 
+        //GESTION DES COLLISIONS AVEC LE BORD DU JEU
         if(positionLeft <= 0) positionLeft = 0;
         if(positionTop <= 0) positionTop = 0;
         if((positionLeft + width) >= battlefieldWidth) positionLeft = battlefieldWidth - width;
         if((positionTop + height) >= battlefieldHeight) positionTop = battlefieldHeight - height;
 
+
+        //ORIENTATION DE L'ELEMENT PERSONNAGE
         if (this.orientLeft == 0){
+            this.angle -= 90;
             tempOrientLeft = this.codeArrowUp;
             this.codeArrowUp = this.codeArrowRight;
             this.codeArrowRight = this.codeArrowDown;
             this.codeArrowDown = this.codeArrowLeft;
             this.codeArrowLeft = tempOrientLeft;
             this.orientLeft++;
+            this.DomElement.style.transform = "rotate(" + this.angle + "deg)";
+            this.moveUp = false;
+            this.moveDown = false;
+            this.moveLeft = false;
+            this.moveRight = false;
         }
 
         if (this.orientRight == 0){
+            this.angle += 90;
             tempOrientRight = this.codeArrowUp;
             this.codeArrowUp = this.codeArrowLeft;
             this.codeArrowLeft = this.codeArrowDown;
             this.codeArrowDown = this.codeArrowRight;
             this.codeArrowRight = tempOrientRight;
             this.orientRight++;
+            this.DomElement.style.transform = "rotate(" + this.angle + "deg)";
+            this.moveUp = false;
+            this.moveDown = false;
+            this.moveLeft = false;
+            this.moveRight = false;
         }
 
         this.DomElement.style.left = positionLeft + "px"; 
