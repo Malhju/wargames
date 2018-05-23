@@ -21,8 +21,10 @@ class UIHomePage {
         this.DOMElement = this.app.el.querySelector('#homepage');
 
         this.characterSelector = this.DOMElement.querySelector('#character-selector');
+
         this.charactersList = this.characterSelector.querySelectorAll('.character');
-        this.buttonStartGame = this.DOMElement.querySelector('#btn-start-game');
+        
+        this.buttonStartGame = this.DOMElement.querySelector('#start-game');
 
         this.character_vs_01 = this.DOMElement.querySelector('#character_vs_01');
         this.character_vs_02 = this.DOMElement.querySelector('#character_vs_02');
@@ -58,6 +60,27 @@ class UIHomePage {
         console.log('characterChosenName', characterChosenName)
 
         this.app.onChooseCharacter(characterChosenData, characterChosenName);
+
+        this.checkStartButton();
+    }
+
+    checkStartButton() {
+        if (this.app.characterGamer1 == null && this.app.characterGamer2 == null){
+            this.buttonStartGame.innerText = "Select players!"; 
+            return false;
+        }
+        else if(this.app.characterGamer1 == null){
+            this.buttonStartGame.innerText = "Select player 1"; 
+            return false;
+        }
+        else if(this.app.characterGamer2 == null){
+            this.buttonStartGame.innerText = "Select player 2"; 
+            return false;
+        }
+        else {
+            this.buttonStartGame.innerText = "START GAME !"; 
+            return true;
+        }
     }
 
     /**
@@ -66,11 +89,14 @@ class UIHomePage {
      * @param event
      */
     onStartGame(event) {
-        console.log('On click btn start'); 
-        this.app.goToGame();
-        
-        if(this.start){
-            this.app.start(); 
+
+        if(this.checkStartButton()){
+            console.log('On click btn start'); 
+            this.app.goToGame();
+
+            if(this.start){
+                this.app.start(); 
+            }
         }
     }
 
@@ -82,7 +108,7 @@ class UIHomePage {
 
     removeCharacter01vs(characterClass, characterName){
         this.character_vs_01.classList.remove(characterClass);
-        this.character_vs_01.querySelector('p').innerText = '';
+        this.character_vs_01.querySelector('p').innerText = 'Player 1';
     }
 
     addCharacter02vs(characterClass, characterName){
@@ -92,7 +118,7 @@ class UIHomePage {
 
     removeCharacter02vs(characterClass, characterName){
         this.character_vs_02.classList.remove(characterClass);
-        this.character_vs_02.querySelector('p').innerText = '';
+        this.character_vs_02.querySelector('p').innerText = 'Player 2';
     }
 
     /**

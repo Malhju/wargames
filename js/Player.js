@@ -51,7 +51,6 @@ class Player {
         // si elements == this, on teste pas la collision
 
         // détection côté qui touche
-
     }
 
     moveCharacter(){
