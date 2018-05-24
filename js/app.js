@@ -15,8 +15,8 @@ class App {
         this.allElements = [];
 
 
-        this.playerOne = new Player('#perso_01', 81, 68, 90, 83, 65, 69, 4, -90);
-        this.playerTwo = new Player('#perso_02', 102, 100, 101, 104, 103, 105, 4, -90);
+        this.playerOne = new Player('#perso_01', 81, 68, 90, 83, 65, 69, 7, -90);
+        this.playerTwo = new Player('#perso_02', 102, 100, 101, 104, 103, 105, 7, -90);
         this.players.push(this.playerOne);
         this.players.push(this.playerTwo);
 
@@ -54,17 +54,23 @@ class App {
         this.playerTwo.moveCharacter();
     }
 
-    /* COLLISIONS */
-    checkAllCollision(){
-        for(let i = 0; i< this.players; i++) {
-            let player = this.players[i];
-            player.checkCollision(this.allElements);
-        }
+    checkCollision(){
+        this.playerOne.checkCollision();
+        this.playerTwo.checkCollision();
     }
+
+    /* COLLISIONS */
+    // checkAllCollision(){
+    //     for(let i = 0; i< this.players.length; i++) {
+    //         let player = this.players[i];
+    //         player.checkCollision(this.allElements);
+    //     }
+    // }
 
     /**
      * Init Application
      */
+    
     start() {
         this.initDOMElements();
         this.initEvents();
@@ -107,7 +113,8 @@ class App {
 
             if(self.gameIsStarted){
                 self.moveCharacter();
-                self.checkAllCollision();    
+                self.checkCollision();
+                // self.checkAllCollision();
             }
             self.loop();
         })
