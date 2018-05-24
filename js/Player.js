@@ -1,6 +1,8 @@
 class Player {
-    constructor (id, codeArrowLeft, codeArrowRight, codeArrowUp, codeArrowDown, codeOrientLeft, codeOrientRight, step, angle){
+    constructor (id, className, codeArrowLeft, codeArrowRight, codeArrowUp, codeArrowDown, codeOrientLeft, codeOrientRight, step, angle){
         this.id = id;
+        
+        this.className = className;
 
         this.codeArrowLeft = codeArrowLeft;
         this.codeArrowRight = codeArrowRight;
@@ -20,11 +22,16 @@ class Player {
         this.orientRight = false;
 
         this.initDomElement();
+        this.createPlayer();
     }
 
     initDomElement(){
         this.DomElement = document.querySelector(this.id);
         this.DomElBattlefield = document.querySelector('#battle');
+    }
+
+    createPlayer(){
+        this.DomElement.classList.add(this.className);
     }
 
     //ECOUTES CLAVIERS
