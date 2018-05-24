@@ -26,6 +26,7 @@ class UIGamePage{
     }
 
     render(){
+        
         this.moveCharacter();
         this.checkAllCollision();   
     }
@@ -58,10 +59,10 @@ class UIGamePage{
     }
 
     /* COLLISIONS */
-    checkAllCollision(){
-        for(let i = 0; i< this.players; i++) {
+    checkAllCollision(){      
+        for(let i = 0; i< this.players.length; i++) {
             let player = this.players[i];
-            player.checkCollision(this.allElements);
+            player.checkCollision();
         }
     }
 }

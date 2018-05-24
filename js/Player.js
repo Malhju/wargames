@@ -57,8 +57,8 @@ class Player {
     }
 
     //GESTION DES COLLISIONS ENTRE LES ELEMENTS
-    checkCollision(){
-        // console.log('test');
+    checkCollision(){  
+         //console.log('test');
         // for sur tous les éléments
         // for(let i=0; i < this.players; i++){
         //     console.log('test');
