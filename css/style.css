@@ -180,7 +180,8 @@ h1{
     position: absolute; 
     width: 50px; 
     height: 50px; 
-    background-image : url(../assets/img/SuperDick1.png);
+    left: 0px;
+    top: 0px;
 }
 
 #perso_02{
@@ -189,8 +190,24 @@ h1{
     height: 50px; 
     left: 910px;
     top: 460px;
-    background-image : url(../assets/img/SuperBitch2.png);
 }
+
+.perso_1_img{
+    background-image : url(../assets/img/SuperDick1.png);
+}
+
+.perso_2_img{
+    background-image : url(../assets/img/SuperBitch1.png);
+}
+
+.perso_3_img{
+    background-image : url(../assets/img/SuperBlack1.png);
+}
+
+.perso_4_img{
+    background-image : url(../assets/img/SuperWoman1.png);
+}
+
 
 /****************** BUTTON ******************/
 

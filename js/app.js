@@ -6,57 +6,15 @@ class App {
     constructor() {
         this.el = null;              // Parent DOM Element
         this.gameStarted = false;    // Game is running or not
+
         this.characterGamer1 = null; // character chosen by player 1
+        this.characterGamerClassName1 = null; 
+
         this.characterGamer2 = null; // character chosen by player 2
+        this.characterGamerClassName2 = null; 
 
         this.gameIsStarted = false;
 
-        this.players = [];
-        this.allElements = [];
-
-
-        this.playerOne = new Player('#perso_01', 81, 68, 90, 83, 65, 69, 7, -90);
-        this.playerTwo = new Player('#perso_02', 102, 100, 101, 104, 103, 105, 7, -90);
-        this.players.push(this.playerOne);
-        this.players.push(this.playerTwo);
-
-        // ON met tous les éléments dans le tableau, y compris les joueurs
-        this.allElements.push(this.playerOne);
-        this.allElements.push(this.playerTwo);
-
-        this.initKeyboardListener();
-    }
-
-    /* MOVE PLAYER */
-
-    initKeyboardListener(){
-        document.addEventListener('keydown', this.onKeyDown.bind(this));
-        document.addEventListener('keyup', this.onKeyUp.bind(this));
-    }
-
-    onKeyDown(event){
-        this.playerOne.onKeyDown(event);
-        this.playerTwo.onKeyDown(event);
-    }
-
-    onKeyUp(event){
-        this.playerOne.onKeyUp(event);
-        this.playerTwo.onKeyUp(event);
-    }
-
-    onKeyPress(event){
-        this.playerOne.onKeyPress(event);
-        this.playerTwo.onKeyPress(event);
-    }
-
-    moveCharacter(){
-        this.playerOne.moveCharacter(); 
-        this.playerTwo.moveCharacter();
-    }
-
-    checkCollision(){
-        this.playerOne.checkCollision();
-        this.playerTwo.checkCollision();
     }
 
     /* COLLISIONS */
@@ -88,6 +46,7 @@ class App {
         this.el = document.querySelector('#app');
         
         this.container_game = document.querySelector('#game');
+
         this.player1 = document.querySelector('#perso_01');
         this.player2 = document.querySelector('#perso_02');
 
@@ -112,9 +71,7 @@ class App {
             self.render();
 
             if(self.gameIsStarted){
-                self.moveCharacter();
-                self.checkCollision();
-                // self.checkAllCollision();
+                self.UIGamePage.render(); 
             }
             self.loop();
         })
@@ -133,11 +90,12 @@ class App {
      *
      * @param character
      */
-    onChooseCharacter(character, characterChosenName) {
+    onChooseCharacter(character, characterChosenName, characterChosenClassName) {
         // Second click on character, remove data
         if (this.characterGamer1 === character) {
             this.UIhomePage.removeCharacter01vs(character, characterChosenName);
             this.characterGamer1 = null;
+            this.characterGamerClassName1 = null;
             return;
         }
 
@@ -145,16 +103,21 @@ class App {
         if (this.characterGamer2 === character) {
             this.UIhomePage.removeCharacter02vs(character, characterChosenName);
             this.characterGamer2 = null;
+            this.characterGamerClassName2 = null;
             return;
         }
 
         // Set new Value
         if (this.characterGamer1 == null) {
             this.characterGamer1 = character;
+
+            this.characterGamerClassName1 = characterChosenClassName;
             this.UIhomePage.addCharacter01vs(character, characterChosenName);
         }
         else if (this.characterGamer2 == null) {
             this.characterGamer2 = character;
+
+            this.characterGamerClassName2 = characterChosenClassName;
             this.UIhomePage.addCharacter02vs(character, characterChosenName);
         }
 
@@ -177,6 +140,8 @@ class App {
         if(uiHomePageCurrentDisplay == "block"){
             this.UIhomePage.DOMElement.style.display = "none";
             this.UIGamePage.DOMElement.style.display = "block";
+
+            this.UIGamePage.startGame();
         }
     }
 }

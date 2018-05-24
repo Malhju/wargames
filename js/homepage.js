@@ -26,6 +26,11 @@ class UIHomePage {
         
         this.buttonStartGame = this.DOMElement.querySelector('#start-game');
 
+        this.character_01 = this.characterSelector.querySelectorAll('.character_01'); 
+        this.character_02 = this.characterSelector.querySelectorAll('.character_02');
+        this.character_03 = this.characterSelector.querySelectorAll('.character_03');
+        this.character_04 = this.characterSelector.querySelectorAll('.character_04');
+
         this.character_vs_01 = this.DOMElement.querySelector('#character_vs_01');
         this.character_vs_02 = this.DOMElement.querySelector('#character_vs_02');
     }
@@ -43,7 +48,8 @@ class UIHomePage {
         // Event on button start
         this.buttonStartGame.addEventListener('click', this.onStartGame.bind(this));
     }
-    
+
+     
     /**
      * On choose character in list
      *
@@ -55,11 +61,36 @@ class UIHomePage {
         let characterChosen = event.target;
 
         let characterChosenData = characterChosen.dataset.character;
+        
         let characterChosenName = characterChosen.querySelector('p').innerText;
+
+        let characterChosenClassName = characterChosen.dataset.characterclassname;
 
         console.log('characterChosenName', characterChosenName)
 
-        this.app.onChooseCharacter(characterChosenData, characterChosenName);
+        console.log('characterChosenData', characterChosenData); 
+
+        ///////////////// IMG CORRESPONING TO THE SELECTED PLAYER /////////////////
+
+        // if(characterChosenData = this.character_01){
+        //     this.app.player_1.classList.add(".perso_1_img", "perso_1_position")
+        // }
+
+        // if(characterChosenData = this.character_02){
+        //     this.character_02.classList.add(".perso_2_img", "perso_2_position")
+        // }
+
+        // if(characterChosenData = this.character_03){
+        //     this.character_03.classList.add(".perso_3_img", "perso_3_position")
+        // }
+
+        // if(characterChosenData = this.character_04){
+        //     this.character_04.classList.add(".perso_4_img", "perso_4_position")
+        // }
+
+         /////////////////////////////////////////////////////////////////// 
+
+        this.app.onChooseCharacter(characterChosenData, characterChosenName, characterChosenClassName);
 
         this.checkStartButton();
     }
