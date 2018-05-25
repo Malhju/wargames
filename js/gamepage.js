@@ -14,7 +14,12 @@ class UIGamePage{
         this.allElements = [];
 
         this.playerOne = new Player('#perso_01', this.app.characterGamerClassName1, 81, 68, 90, 83, 65, 69, 4, -90);
-        this.playerTwo = new Player('#perso_02', this.app.characterGamerClassName2, 102, 100, 101, 104, 103, 105, 4, -90);
+        this.playerTwo = new Player('#perso_02', this.app.characterGamerClassName2, 102, 100, 101, 104, 103, 105, 4, 90);
+        
+        this.playerOne.collisionList.push(this.playerTwo);
+        this.playerTwo.collisionList.push(this.playerOne);
+        
+        
         this.players.push(this.playerOne);
         this.players.push(this.playerTwo);
 
@@ -26,9 +31,8 @@ class UIGamePage{
     }
 
     render(){
-        
-        this.moveCharacter();
-        this.checkAllCollision();   
+        this.playerOne.render();
+        this.playerTwo.render();
     }
 
       /* MOVE PLAYER */
@@ -51,18 +55,5 @@ class UIGamePage{
     onKeyPress(event){
         this.playerOne.onKeyPress(event);
         this.playerTwo.onKeyPress(event);
-    }
-
-    moveCharacter(){
-        this.playerOne.moveCharacter(); 
-        this.playerTwo.moveCharacter();
-    }
-
-    /* COLLISIONS */
-    checkAllCollision(){      
-        for(let i = 0; i< this.players.length; i++) {
-            let player = this.players[i];
-            player.checkCollision();
-        }
     }
 }

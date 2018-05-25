@@ -13,6 +13,11 @@ class Player {
         this.angle = angle;
 
         this.step = step; 
+        this.stepRotation = 4;
+
+        this.rotationDOMElement = this.angle;
+        
+        this.collisionList = [];
         
         this.canMove = true;
         this.moveLeft = false;
@@ -21,6 +26,10 @@ class Player {
         this.moveDown = false;
         this.orientLeft = 1;
         this.orientRight = false;
+
+        this.startAnimationEject = false;
+        this.animationEject = null;
+        this.animationEjectDuration = 0;
 
         this.initDomElement();
         this.createPlayer();
@@ -56,136 +65,112 @@ class Player {
 
     }
 
+    render(){
+        if(this.animationEject != null){
+            this.animateCharacter();
+        }
+        else{
+            this.moveCharacter();
+        }
+        
+        this.checkCollision();
+    }
+
     //GESTION DES COLLISIONS ENTRE LES ELEMENTS
     checkCollision(){  
          //console.log('test');
         // for sur tous les éléments
-        // for(let i=0; i < this.players; i++){
-        //     console.log('test');
+
+
+        let positionPlayerTop = this.DomElement.offsetTop;
+        let positionPlayerLeft = this.DomElement.offsetLeft;
+        let positionPlayerBottom = this.DomElement.offsetTop + this.DomElement.offsetHeight;
+        let positionPlayerRight = this.DomElement.offsetLeft + this.DomElement.offsetWidth;
+
+
+        for(let i=0; i < this.collisionList.length; i++){
+            let target = this.collisionList[i].DomElement;
+
+            
+            let targetTop = target.offsetTop;
+            let targetLeft = target.offsetLeft;
+            let targetWidth = target.offsetWidth;
+            let targetBottom = target.offsetTop + target.offsetHeight;
+            let targetRight = target.offsetLeft + targetWidth;
+
+
+            //collision J1droite-J2gauche
+            if (positionPlayerTop <= targetBottom &&
+                positionPlayerBottom >= targetTop && 
+                positionPlayerRight > targetLeft && 
+                positionPlayerRight < targetLeft + targetWidth / 2)
+            {
+                this.startAnimationEject = true;
+                this.animationEject = 'left' 
+            }
+
+            if (positionPlayerTop <= targetBottom && 
+                positionPlayerBottom >= targetTop && 
+                positionPlayerLeft > targetRight - targetWidth / 2 &&
+                positionPlayerLeft < targetRight 
+            ){
+                this.startAnimationEject = true;
+                this.animationEject = 'right' 
+            }
+
+        // if (positionPlayer1Right >= positionPlayer2Left && 
+        //     positionPlayer1Left <= positionPlayer2Right && 
+        //     positionPlayer1Top < positionPlayer2Bottom &&
+        //     positionPlayer1Top > positionPlayer2Bottom - 2*this.step
+        // ){
+            // this.moveUp = false;
+            // this.moveDown = false;
+            // this.moveLeft = false;
+            // this.moveRight = false;
+            // this.canMove = false;
+
+            // player1.classList.add('ejectDown');
+            // player2.classList.add('ejectUp');
+            
+            // setTimeout(function(){
+            //     requestAnimationFrame(function(){
+            //         player1.style.top = (positionPlayer1Top + 50) + 'px';
+            //         player2.style.top = (positionPlayer2Top - 50) + 'px';
+            //         player1.classList.remove('ejectDown');
+            //         player2.classList.remove('ejectUp');
+            //         self.canMove = true;
+            //     })
+            // }, 1000);
         // }
-        // si elements == this, on teste pas la collision
 
+        // if (positionPlayer1Right >= positionPlayer2Left && 
+        //     positionPlayer1Left <= positionPlayer2Right && 
+        //     positionPlayer1Bottom < positionPlayer2Top &&
+        //     positionPlayer1Bottom > positionPlayer2Top - 2*this.step
+        // ){
+            // this.moveUp = false;
+            // this.moveDown = false;
+            // this.moveLeft = false;
+            // this.moveRight = false;
+            // this.canMove = false;
 
-        // détection côté qui touche
-        let player1 = document.querySelector("#perso_01");
-        let player2 = document.querySelector("#perso_02");
-        
-        let positionPlayer1 = document.querySelector("#perso_01");
-        let positionPlayer2 = document.querySelector("#perso_02");
-
-        let positionPlayer1Top = positionPlayer1.offsetTop;
-        let positionPlayer1Left = positionPlayer1.offsetLeft;
-        let positionPlayer1Bottom = positionPlayer1.offsetTop + positionPlayer1.offsetHeight;
-        let positionPlayer1Right = positionPlayer1.offsetLeft + positionPlayer1.offsetWidth;
-        
-
-        let positionPlayer2Top = positionPlayer2.offsetTop;
-        let positionPlayer2Left = positionPlayer2.offsetLeft;
-        let positionPlayer2Bottom = positionPlayer2.offsetTop + positionPlayer2.offsetHeight;
-        let positionPlayer2Right = positionPlayer2.offsetLeft + positionPlayer2.offsetWidth;
-
-        let self = this;
-
-        //collision J1droite-J2gauche
-        if (positionPlayer1Top <= positionPlayer2Bottom &&
-            positionPlayer1Bottom >= positionPlayer2Top && 
-            positionPlayer1Right > positionPlayer2Left && 
-            positionPlayer1Right < positionPlayer2Left + 2*this.step)
-        {
-            this.moveUp = false;
-            this.moveDown = false;
-            this.moveLeft = false;
-            this.moveRight = false;
-            this.canMove = false;
-
-            player1.classList.add('ejectLeft');
-            player2.classList.add('ejectRight');
+            // player1.classList.add('ejectUp');
+            // player2.classList.add('ejectDown');
             
-            setTimeout(function(){
-                requestAnimationFrame(function(){
-                    player1.style.left = (positionPlayer1Left - 50) + 'px';
-                    player2.style.left = (positionPlayer2Left + 50) + 'px';
-                    player1.classList.remove('ejectLeft');
-                    player2.classList.remove('ejectRight');
-                    self.canMove = true;
-                })
-            }, 1000);
+            // setTimeout(function(){
+            //     requestAnimationFrame(function(){
+            //         player1.style.top = (positionPlayer1Top - 50) + 'px';
+            //         player2.style.top = (positionPlayer2Top + 50) + 'px';
+            //         player1.classList.remove('ejectUp');
+            //         player2.classList.remove('ejectDown');
+            //         self.canMove = true;
+            //     })
+            // }, 1000);
+        // }
+
         }
+      
 
-        if (positionPlayer1Top <= positionPlayer2Bottom && 
-            positionPlayer1Bottom >= positionPlayer2Top && 
-            positionPlayer1Left > positionPlayer2Right &&
-            positionPlayer1Left < positionPlayer2Right + 2*this.step
-        ){
-            this.moveUp = false;
-            this.moveDown = false;
-            this.moveLeft = false;
-            this.moveRight = false;
-            this.canMove = false;
-
-            player1.classList.add('ejectRight');
-            player2.classList.add('ejectLeft');
-            
-            setTimeout(function(){
-                requestAnimationFrame(function(){
-                    player1.style.left = (positionPlayer1Left + 50) + 'px';
-                    player2.style.left = (positionPlayer2Left - 50) + 'px';
-                    player1.classList.remove('ejectRight');
-                    player2.classList.remove('ejectLeft');
-                    self.canMove = true;
-                })
-            }, 1000);
-        }
-
-        if (positionPlayer1Right >= positionPlayer2Left && 
-            positionPlayer1Left <= positionPlayer2Right && 
-            positionPlayer1Top < positionPlayer2Bottom &&
-            positionPlayer1Top > positionPlayer2Bottom - 2*this.step
-        ){
-            this.moveUp = false;
-            this.moveDown = false;
-            this.moveLeft = false;
-            this.moveRight = false;
-            this.canMove = false;
-
-            player1.classList.add('ejectDown');
-            player2.classList.add('ejectUp');
-            
-            setTimeout(function(){
-                requestAnimationFrame(function(){
-                    player1.style.top = (positionPlayer1Top + 50) + 'px';
-                    player2.style.top = (positionPlayer2Top - 50) + 'px';
-                    player1.classList.remove('ejectDown');
-                    player2.classList.remove('ejectUp');
-                    self.canMove = true;
-                })
-            }, 1000);
-        }
-
-        if (positionPlayer1Right >= positionPlayer2Left && 
-            positionPlayer1Left <= positionPlayer2Right && 
-            positionPlayer1Bottom < positionPlayer2Top &&
-            positionPlayer1Bottom > positionPlayer2Top - 2*this.step
-        ){
-            this.moveUp = false;
-            this.moveDown = false;
-            this.moveLeft = false;
-            this.moveRight = false;
-            this.canMove = false;
-
-            player1.classList.add('ejectUp');
-            player2.classList.add('ejectDown');
-            
-            setTimeout(function(){
-                requestAnimationFrame(function(){
-                    player1.style.top = (positionPlayer1Top - 50) + 'px';
-                    player2.style.top = (positionPlayer2Top + 50) + 'px';
-                    player1.classList.remove('ejectUp');
-                    player2.classList.remove('ejectDown');
-                    self.canMove = true;
-                })
-            }, 1000);
-        }
     }
 
     moveCharacter(){
@@ -228,6 +213,7 @@ class Player {
             this.moveDown = false;
             this.moveLeft = false;
             this.moveRight = false;
+            this.rotationDOMElement = this.angle;
         }
 
         if (this.orientRight == 0){
@@ -243,9 +229,50 @@ class Player {
             this.moveDown = false;
             this.moveLeft = false;
             this.moveRight = false;
+            
+            this.rotationDOMElement = this.angle;
         }
 
         this.DomElement.style.left = positionLeft + "px"; 
         this.DomElement.style.top = positionTop + "px";
+    }
+
+    animateCharacter(){
+        console.log(this.animationEject);
+
+        if(this.startAnimationEject){
+            this.startAnimationEject = false;
+            this.animationEjectDuration = 0;
+
+            this.offsetLeft = this.DomElement.offsetLeft;
+            this.offsetTop = this.DomElement.offsetTop;
+
+            var self = this;
+
+            setTimeout(function(){
+                self.animationEject = null;
+            },1000);
+        }
+
+
+        this.rotationDOMElement += this.stepRotation * 2;
+
+        switch(this.animationEject){
+            case 'left':
+                this.offsetLeft -= this.step/7;
+                break;
+
+            case 'right':
+                this.offsetLeft += this.step/7;
+                break;
+        }
+        
+
+        this.animationEjectDuration++;
+
+
+        this.DomElement.style.left = this.offsetLeft + "px"; 
+        this.DomElement.style.top = this.offsetTop + "px";
+        this.DomElement.style.transform = "rotate(" + this.rotationDOMElement + "deg)";
     }
 }
